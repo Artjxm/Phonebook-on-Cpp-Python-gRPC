@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+service PhonebookService {
+  rpc AddContact(Contact) returns (Status) {}
+  rpc RemoveContact(ContactId) returns (Status) {}
+  rpc SearchContacts(SearchQuery) returns (Contacts) {}
+  rpc GetContact(ContactId) returns (Contact) {}
+}
+
+message Contact {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string middle_name = 4;
+  string phone_number = 5;
+  string note = 6;
+}
+
+message ContactId {
+  int32 id = 1;
+}
+
+message SearchQuery {
+  string query = 1;
+  bool search_in_notes = 2;
+}
+
+message Contacts {
+  repeated Contact contacts = 1;
+}
+
+message Status {
+  bool success = 1;
+  string message = 2;
+}
